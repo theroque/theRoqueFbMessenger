@@ -1,0 +1,23 @@
+{
+  "name": "onlinewaiter",
+  "version": "1.0.0",
+  "description": "Bot for restaurant!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HippyFizz/onlinewaiter.git"
+  },
+  "author": "HippyFizz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HippyFizz/onlinewaiter/issues"
+  },
+  "homepage": "https://github.com/HippyFizz/onlinewaiter#readme",
+  "dependencies": {
+    "botkit": "^0.1.1",
+	"mysql": "^2.10.2"
+  }
+}
