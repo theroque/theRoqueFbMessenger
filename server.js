@@ -69,7 +69,7 @@ function showJordan(bot, message) {
 				'template_type' : 'generic',
 				'elements' : [{
 						'title' : 'Head of Digital, Jordan',
-						'image_url' : 'http://i77.fastpic.ru/big/2016/0526/d5/aeadffb1924ee1bd9afbfcc83095f7d5.png',
+						'image_url' : 'https://i.yapx.ru/BMeH.png',
 						'subtitle' : 'phone: (03)-8547-1078',
 						'buttons' : [{
 								'type' : 'web_url',
@@ -92,7 +92,7 @@ function showSandra(bot, message) {
 				'template_type' : 'generic',
 				'elements' : [{
 						'title' : 'Managing Director, Sandra',
-						'image_url' : 'http://i79.fastpic.ru/big/2016/0526/4b/f93ba8e2362ca43726194e68cea2ac4b.png',
+						'image_url' : 'https://i.yapx.ru/BMeI.png',
 						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
