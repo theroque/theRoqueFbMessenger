@@ -32,14 +32,12 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
-request('https://graph.facebook.com/v2.6/me?access_token=EAAPxG1KbJV8BAFn4WEvVQr0aNPir0ZAXlz5BoxGUwB5ktcmA2JVK0BH0tt4L4snirYZArzmssTUmvv8vgkpdWBWOta7JdrfuV0APN6GV5KokXXSSkg1PlkTD6B6hexV7ArxOKxidkYtepY1jVrCrvOEdjEWYLY9y4EMk7qRwZDZD', function (error, response, body) {
+request('https://graph.facebook.com/v2.6/1043964249024835?access_token=EAAPxG1KbJV8BAFn4WEvVQr0aNPir0ZAXlz5BoxGUwB5ktcmA2JVK0BH0tt4L4snirYZArzmssTUmvv8vgkpdWBWOta7JdrfuV0APN6GV5KokXXSSkg1PlkTD6B6hexV7ArxOKxidkYtepY1jVrCrvOEdjEWYLY9y4EMk7qRwZDZD', function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    console.log(response) 
+	  console.log(response.body)
   } else{
 	  console.log(error)
   }
-  console.log(error)
-  console.log(response.body)
 })
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
