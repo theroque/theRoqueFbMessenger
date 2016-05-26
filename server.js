@@ -41,7 +41,13 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			if (!error && response.statusCode == 200) {
 				res = JSON.parse(response.body)
 			}
-			convo.ask("Hello " + res.first_name + " " + res.last_name + ", how I can help you?!", function (response, convo) {
+			if (res.first_name && res.last_name){
+				hellomessage = "Hello, " + res.first_name + " " + res.last_name + ", how I can help you?!"
+			} else {
+				hellomessage = "Hello, how I can help you?!"
+			}
+			
+			convo.ask(hellomessage, function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
 					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
 						digitalSearch++;
