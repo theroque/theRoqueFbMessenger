@@ -38,15 +38,8 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 	bot.startConversation(message, function (err, convo) {
 		controller.storage.users.get(message.user, function (err, user) {
 			if (!user) {
-				var topost = 'https://graph.facebook.com/v2.6/' + message.user + '?access_token=' + accessToken
-					request(topost, function (error, response, body) {
-						if (!error && response.statusCode == 200) {
-							 var res = JSON.parse(response.body)
-						} else {
-							console.log(error)
-						}
-					})
-					user = {
+				var res = getNameLastName(message)
+				user = {
 					id : message.user,
 					first_name : res.first_name,
 					last_name : res.last_name,
@@ -80,6 +73,17 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 		})
 	})
 });
+
+function getNameLastName(message) {
+	var topost = 'https://graph.facebook.com/v2.6/' + message.user + '?access_token=' + accessToken;
+	request(topost, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			return res = JSON.parse(response.body)
+		} else {
+			return false;
+		}
+	})
+}
 
 function showJordan(bot, message) {
 	bot.reply(message, {
