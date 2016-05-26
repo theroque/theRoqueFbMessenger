@@ -37,12 +37,11 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 	var marketingSearch = 0;
 	bot.startConversation(message, function (err, convo) {
 			var topost = 'https://graph.facebook.com/v2.6/' + message.user + '?access_token=' + accessToken;
-			console.log(topost)
-			console.log(message.user)
 			userData = request(topost, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					res = JSON.parse(response.body)
-					console.log(res)
+					console.log(res.first_name)
+					console.log(res.last_name)
 					return res;
 				}
 			})
