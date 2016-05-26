@@ -31,7 +31,7 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
-controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day'], 'message_received', function (bot, message) {
+controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
 	var look1 = 0;
 	var look2 = 0;
 	bot.startConversation(message, function (err, convo) {
@@ -49,49 +49,58 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day'], 'm
 			console.log(look1)
 			console.log(look2)
 			if (look1 == 0 && look2 == 0) {
-				bot.reply(message, "Sorry, I can't help you right now :(")
-			} else if (look1 > look2) {
-				bot.reply(message, {
-					attachment : {
-						'type' : 'template',
-						'payload' : {
-							'template_type' : 'generic',
-							'elements' : [{
-									'title' : 'Head of Digital, Jordan',
-									'subtitle' : 'phone: (03)-8547-1078',
-									'buttons' : [{
-											'type' : 'web_url',
-											'url' : 'https://www.google.ru',
-											'title' : "Email now"
-										}
-									]
-								}
-							]
-						}
-					}
-				});
+				bot.reply(message, 'I can\'t help you');
+			}
+			else if (look1 > look2) {
+				showJordan(bot, message)
 			} else if (look1 < look2) {
-				bot.reply(message, {
-					attachment : {
-						'type' : 'template',
-						'payload' : {
-							'template_type' : 'generic',
-							'elements' : [{
-									'title' : 'Managing Director, Sandra',
-									'subtitle' : 'phone: (03) 8547 1078',
-									'buttons' : [{
-											'type' : 'web_url',
-											'url' : 'https://www.google.ru',
-											'title' : 'Email now'
-										}
-									]
-								}
-							]
-						}
-					}
-				});
+				showSandra(bot, message)
 			}
 			convo.next();
 		});
 	})
 });
+
+function showJordan(bot, message) {
+	bot.reply(message, {
+		attachment : {
+			'type' : 'template',
+			'payload' : {
+				'template_type' : 'generic',
+				'elements' : [{
+						'title' : 'Head of Digital, Jordan',
+						'subtitle' : 'phone: (03)-8547-1078',
+						'buttons' : [{
+								'type' : 'web_url',
+								'url' : 'https://www.google.ru',
+								'title' : "Email now"
+							}
+						]
+					}
+				]
+			}
+		}
+	});
+}
+
+function showSandra(bot, message) {
+	bot.reply(message, {
+		attachment : {
+			'type' : 'template',
+			'payload' : {
+				'template_type' : 'generic',
+				'elements' : [{
+						'title' : 'Managing Director, Sandra',
+						'subtitle' : 'phone: (03) 8547 1078',
+						'buttons' : [{
+								'type' : 'web_url',
+								'url' : 'https://www.google.ru',
+								'title' : 'Email now'
+							}
+						]
+					}
+				]
+			}
+		}
+	});
+}
