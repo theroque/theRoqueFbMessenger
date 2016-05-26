@@ -32,7 +32,8 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
-request('https://graph.facebook.com/v2.6/1043964249024835?access_token='+verifyToken, function (error, response, body) {
+var topost = 'https://graph.facebook.com/v2.6/1043964249024835?access_token=' + verifyToken
+request(topost, function (error, response, body) {
   if (!error && response.statusCode == 200) {
 	  res = JSON.parse(response.body)
 	  console.log(res.first_name)
