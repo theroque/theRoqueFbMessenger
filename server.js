@@ -100,7 +100,6 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 									convo.next();
 								}
 							}, 
-							convo.repeat();
 							{
 							default:
 								true,
