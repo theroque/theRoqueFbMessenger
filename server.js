@@ -45,7 +45,8 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 					return res;
 				}
 			})
-			//console.log(userData)
+			userData = JSON.parse(userData)
+			console.log(userData)
 			convo.ask("Hello " + userData.first_name + " " + userData.last_name + ", how I can help you?!", function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
 					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
