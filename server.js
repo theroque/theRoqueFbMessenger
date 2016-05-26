@@ -38,9 +38,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 	bot.startConversation(message, function (err, convo) {
 		controller.storage.users.get(message.user, function (err, user) {
 			if (!user) {
-				while (res == undefined){
-					var res = getNameLastName(message)
-				}
+				var res = getNameLastName(message)
 				console.log(res)
 				/*user = {
 					id : message.user,
@@ -83,9 +81,8 @@ function getNameLastName(message) {
 		if (!error && response.statusCode == 200) {
 			console.log(res.first_name)
 			console.log(res.last_name)
-			return res = JSON.parse(response.body)
-		} else {
-			return false;
+			res = JSON.parse(response.body)
+			return res
 		}
 	})
 }
