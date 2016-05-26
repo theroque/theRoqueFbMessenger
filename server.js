@@ -41,12 +41,12 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			if (!error && response.statusCode == 200) {
 				res = JSON.parse(response.body)
 			}
-			if (res.first_name && res.last_name){
+			if (res.first_name && res.last_name) {
 				hellomessage = "Hello, " + res.first_name + " " + res.last_name + ", how I can help you?!"
 			} else {
 				hellomessage = "Hello, how I can help you?!"
 			}
-			
+
 			convo.ask(hellomessage, function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
 					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
@@ -63,8 +63,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 				if (digitalSearch == 0 && marketingSearch == 0) {
 					bot.reply(message, 'I can\'t help you');
 				} else if (digitalSearch > marketingSearch) {
-					
-					bot.reply(message, message.channel)
+					bot.reply(message, 'Oh great! I suggest you speak to our Head of Digital, Jordan.')
 					showJordan(bot, message)
 				} else if (digitalSearch < marketingSearch) {
 					showSandra(bot, message)
@@ -88,9 +87,13 @@ function showJordan(bot, message) {
 						'buttons' : [{
 								'type' : 'web_url',
 								'url' : 'http://theroque.com.au/roque-digital/contact/',
-								'title' : "Email now"
+								'title' : "contact Jordan"
 							}
 						]
+					}, {
+						'title' : 'Head of Digital, Jordan',
+						'image_url' : 'https://i.yapx.ru/BMeH.png',
+						'subtitle' : 'mail: jordan@theroque.com.au'
 					}
 				]
 			}
@@ -110,10 +113,14 @@ function showSandra(bot, message) {
 						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
-								'url' : 'https://jordan@theroque.com.au',
-								'title' : 'Email now'
+								'url' : 'http://theroque.com.au/roque/contact/',
+								'title' : 'contact Sandra'
 							}
 						]
+					},{
+						'title' : 'Managing Director, Sandra',
+						'image_url' : 'https://i.yapx.ru/BMeI.png',
+						'subtitle' : 'mail: sandra@theroque.com.au'
 					}
 				]
 			}
