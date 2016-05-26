@@ -1,6 +1,7 @@
 var Botkit = require('botkit');
-var digital = ["SEO", "bot", "facebook", "social media", "social", "digital marketing", "email marketing", "content management", "analytics", "app"]
-var creative = ["Brand", "brand strategy", "design", "creative", "marketing", "advertising", "web design", "communications", "PR", "video", "animation", "production"]
+var request = require('request');
+var digital = ["SEO", "BOT", "FACEBOOK", "SOCIAL MEDIA", "SOCIAL", "DIGITAL MARKETING", "EMAIL MARKETING", "CONTENT MANAGMENTt", "ANALYTICS", "APP"]
+var creative = ["BRAND", "BRAND STRATEGY", "DESIGN", "CREATIVE", "MARKETING", "ADVERTISING", "WEB DESIGN", "COMMUNICATIONS", "PR", "VIDEO", "ANIMATION", "PRODUCTION"]
 
 var language = 'eng'; //DEFAULT LANGUAGE
 
@@ -33,67 +34,66 @@ controller.setupWebserver(port, function (trouble, webserver) {
 });
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day'], 'message_received', function (bot, message) {
+	var look1 = 0;
+	var look2 = 0;
 	bot.startConversation(message, function (err, convo) {
-		if (!err) {
-			convo.ask("Hello, how I can help you?!", function (response, convo) {
-				if (response.text) {
-					//проверка на вхождение строки ответа в массив кейвордов
-					if (true) {
-						bot.reply(message, {
-							attachment : {
-								'type' : 'template',
-								'payload' : {
-									'template_type' : 'generic',
-									'elements' : [{
-											'title' : 'Head of Digital, Jordan',
-											'subtitle' : 'description',
-											'buttons' : [{
-													'type' : 'postback',
-													'title' : 'email',
-													'payload' : email
-												},
-												{
-													'type' : 'postback',
-													'title' : 'call',
-													'payload': call
-												}
-											]
-										}
-									]
-								}
-							}
-						});
-					} else if (true) {
-						bot.reply(message, {
-							attachment : {
-								'type' : 'template',
-								'payload' : {
-									'template_type' : 'generic',
-									'elements' : [{
-											'title' : 'Managing Director, Sandra',
-											'subtitle' : 'description',
-											'buttons' : [{
-													'type' : 'postback',
-													'title' : 'email',
-													'payload' : email
-												},
-												{
-													'type' : 'postback',
-													'title' : 'call',
-													'payload': call
-												}
-											]
-										}
-									]
-								}
-							}
-						});
-					}
-					convo.stop();
-				} else {
-					convo.repeat();
+		convo.ask("Hello, how I can help you?!", function (response, convo) {
+			for (var i = 0; i < digital.length; i++) {
+				if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
+					look1++;
 				}
-			});
-		}
+			}
+			for (var i = 0; i < creative.length; i++) {
+				if (response.text.toUpperCase().indexOf(creative[i]) != -1) {
+					look2++;
+				}
+			}
+			console.log(look1)
+			console.log(look2)
+			if (look1 == 0 && look2 == 0) {
+				bot.reply(message, "Sorry, I can't help you right now :(")
+			} else if (look1 > look2) {
+				bot.reply(message, {
+					attachment : {
+						'type' : 'template',
+						'payload' : {
+							'template_type' : 'generic',
+							'elements' : [{
+									'title' : 'Head of Digital, Jordan',
+									'subtitle' : 'phone: (03)-8547-1078',
+									'buttons' : [{
+											'type' : 'web_url',
+											'url' : 'https://www.google.ru',
+											'title' : "Email now"
+										}
+									]
+								}
+							]
+						}
+					}
+				});
+			} else if (look1 < look2) {
+				bot.reply(message, {
+					attachment : {
+						'type' : 'template',
+						'payload' : {
+							'template_type' : 'generic',
+							'elements' : [{
+									'title' : 'Managing Director, Sandra',
+									'subtitle' : 'phone: (03) 8547 1078',
+									'buttons' : [{
+											'type' : 'web_url',
+											'url' : 'https://www.google.ru',
+											'title' : 'Email now'
+										}
+									]
+								}
+							]
+						}
+					}
+				});
+			}
+			convo.next();
+		});
 	})
 });
