@@ -39,7 +39,7 @@ request('https://graph.facebook.com/v2.6/me?access_token=EAAPxG1KbJV8BAFn4WEvVQr
 	  console.log(error)
   }
   console.log(error)
-  console.log(response)
+  console.log(response.body)
 })
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
