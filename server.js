@@ -39,12 +39,13 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			var topost = 'https://graph.facebook.com/v2.6/' + message.user + '?access_token=' + accessToken;
 			console.log(topost)
 			console.log(message.user)
-			request(topost, function (error, response, body) {
+			userData = request(topost, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					res = JSON.parse(response.body)
+					return res;
 				}
 			})
-			convo.ask("Hello " + res.first_name + " " + res.last_name + ", how I can help you?!", function (response, convo) {
+			convo.ask("Hello " + userData.first_name + " " + userData.last_name + ", how I can help you?!", function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
 					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
 						digitalSearch++;
