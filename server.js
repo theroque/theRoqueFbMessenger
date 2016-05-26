@@ -87,13 +87,19 @@ function showJordan(bot, message) {
 						'buttons' : [{
 								'type' : 'web_url',
 								'url' : 'http://theroque.com.au/roque-digital/contact/',
-								'title' : "contact Jordan"
+								'title' : "contact via site"
 							}
 						]
 					}, {
 						'title' : 'Head of Digital, Jordan',
 						'image_url' : 'https://i.yapx.ru/BMeH.png',
-						'subtitle' : 'mail: jordan@theroque.com.au'
+						'subtitle' : 'mail: jordan@theroque.com.au',
+						'buttons' : [{
+								'type' : 'web_url',
+								'url' : 'http://theroque.com.au/roque-digital/contact/',
+								'title' : "contact via site"
+							}
+						]
 					}
 				]
 			}
@@ -114,13 +120,19 @@ function showSandra(bot, message) {
 						'buttons' : [{
 								'type' : 'web_url',
 								'url' : 'http://theroque.com.au/roque/contact/',
-								'title' : 'contact Sandra'
+								'title' : 'contact via site'
 							}
 						]
 					},{
 						'title' : 'Managing Director, Sandra',
 						'image_url' : 'https://i.yapx.ru/BMeI.png',
-						'subtitle' : 'mail: sandra@theroque.com.au'
+						'subtitle' : 'mail: sandra@theroque.com.au',
+						'buttons' : [{
+								'type' : 'web_url',
+								'url' : 'http://theroque.com.au/roque/contact/',
+								'title' : 'contact via site'
+							}
+						]
 					}
 				]
 			}
