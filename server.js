@@ -39,6 +39,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 		controller.storage.users.get(message.user, function (err, user) {
 			if (!user) {
 				var res = getNameLastName(message)
+				console.log(res)
 				user = {
 					id : message.user,
 					first_name : res.first_name,
