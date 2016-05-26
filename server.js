@@ -42,9 +42,11 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			userData = request(topost, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					res = JSON.parse(response.body)
+					console.log(res)
 					return res;
 				}
 			})
+			console.log(userData)
 			convo.ask("Hello " + userData.first_name + " " + userData.last_name + ", how I can help you?!", function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
 					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
