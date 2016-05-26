@@ -1,4 +1,5 @@
 var Botkit = require('botkit');
+var request = require('request')
 var digital = ["SEO", "BOT", "FACEBOOK", "SOCIAL MEDIA", "SOCIAL", "DIGITAL MARKETING", "EMAIL MARKETING", "CONTENT MANAGMENTt", "ANALYTICS", "APP"]
 var creative = ["BRAND", "BRAND STRATEGY", "DESIGN", "CREATIVE", "MARKETING", "ADVERTISING", "WEB DESIGN", "COMMUNICATIONS", "PR", "VIDEO", "ANIMATION", "PRODUCTION"]
 
@@ -30,6 +31,12 @@ controller.setupWebserver(port, function (trouble, webserver) {
 		console.log('Bot ready!')
 	});
 });
+
+request('http://www.google.com', function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body) // Show the HTML for the Google homepage. 
+  }
+})
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
 	var digitalSearch = 0;
@@ -73,7 +80,7 @@ function showJordan(bot, message) {
 						'subtitle' : 'phone: (03)-8547-1078',
 						'buttons' : [{
 								'type' : 'web_url',
-								'url' : 'https://www.google.ru',
+								'url' : 'http://theroque.com.au/roque-digital/contact/',
 								'title' : "Email now"
 							}
 						]
@@ -94,10 +101,9 @@ function showSandra(bot, message) {
 						'title' : 'Managing Director, Sandra',
 						'image_url' : 'https://i.yapx.ru/BMeI.png',
 						'subtitle' : 'phone: (03) 8547 1078',
-						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
-								'url': 'https://mailto:godieseladmins@godieselracing.com',
+								'url': 'https://jordan@theroque.com.au ',
 								'title' : 'Email now'
 							}
 						]
