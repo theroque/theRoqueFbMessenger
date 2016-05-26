@@ -48,9 +48,9 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 					};
 				}
 			})
-			controller.storage.users.save(user, function (err, id) {
-				console.log(err)
-			});
+			console.log(user.id)
+			console.log(user.first_name)
+			console.log(user.last_name)
 			convo.ask("Hello " + user.first_name + " " + user.last_name + ", how I can help you?!", function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
 					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
