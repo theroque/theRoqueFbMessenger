@@ -32,6 +32,11 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
+answers = {
+        digital: new RegExp(/^(digital|digital assistance|digital one)/i),
+        marketing: new RegExp(/^(marketing|marketing assistance|marketing one)/i),
+    };
+
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
 	var digitalSearch = 0;
 	var marketingSearch = 0;
@@ -65,13 +70,13 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 								pattern : bot.utterances.yes,
 								callback : function (response, convo) {
 									convo.ask('Digital assistance or Marketing one?', [{
-												pattern : ['digital'],
+												pattern : answers.digital,
 												callback : function (response, convo) {
 													showJordan(bot, message)
 													convo.next();
 												}
 											}, {
-												pattern : ['marketing'],
+												pattern : answers.marketing,
 												callback : function (response, convo) {
 													showSandra(bot, message)
 													convo.next();
