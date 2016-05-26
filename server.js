@@ -65,13 +65,13 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 								pattern : bot.utterances.yes,
 								callback : function (response, convo) {
 									convo.ask('Digital assistance or Marketing one?', [{
-												pattern : ['digital'],
+												pattern : ['digital', 'Digital assistance'],
 												callback : function (response, convo) {
 													showJordan(bot, message)
 													convo.next();
 												}
 											}, {
-												pattern : ['marketing'],
+												pattern : ['marketing', 'marketing assistance', 'marketing one'],
 												callback : function (response, convo) {
 													showSandra(bot, message)
 													convo.next();
