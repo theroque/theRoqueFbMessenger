@@ -42,13 +42,11 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 				if (!error && response.statusCode == 200) {
 					res = JSON.parse(response.body)
 						user = {
-						id : message.user,
 						first_name : res.first_name,
 						last_name : res.last_name,
 					};
 				}
 			})
-			console.log(user.id)
 			console.log(user.first_name)
 			console.log(user.last_name)
 			convo.ask("Hello " + user.first_name + " " + user.last_name + ", how I can help you?!", function (response, convo) {
