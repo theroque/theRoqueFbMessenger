@@ -32,7 +32,7 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
-request('http://graph.facebook.com/v2.6/me/1043964249024835', function (error, response, body) {
+request('http://graph.facebook.com/v2.6/me', function (error, response, body) {
   if (!error && response.statusCode == 200) {
     console.log(response) 
   } else{
