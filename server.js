@@ -33,9 +33,9 @@ controller.setupWebserver(port, function (trouble, webserver) {
 });
 
 answers = {
-        digital: new RegExp(/^(digital|digital assistance|digital one)/i),
-        marketing: new RegExp(/^(marketing|marketing assistance|marketing one)/i),
-    };
+	digital : new RegExp(/^(digital|digital assistance|digital one)/i),
+	marketing : new RegExp(/^(marketing|marketing assistance|marketing one)/i),
+};
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
 	var digitalSearch = 0;
@@ -82,6 +82,12 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 													convo.next();
 												}
 											}, {
+												pattern : bot.utterances.no,
+												callback : function (response, convo) {
+													bot.reply(message, 'Your are strange >< \nBye!')
+													convo.next();
+												}
+											}, {
 											default:
 												true,
 												callback : function (response, convo) {
@@ -99,8 +105,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 									convo.say('Hmmm, I\'m still new to all of this human interaction. I can help only with Digital and Marketing. Bye!:(')
 									convo.next();
 								}
-							}, 
-							{
+							}, {
 							default:
 								true,
 								callback : function (response, convo) {
