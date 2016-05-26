@@ -96,7 +96,7 @@ function showSandra(bot, message) {
 						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
-								'url' : 'mailto:buptyozzz@gmail.com',
+								'url': 'mailto:godieseladmins@godieselracing.com',
 								'title' : 'Email now'
 							}
 						]
