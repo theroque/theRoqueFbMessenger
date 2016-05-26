@@ -38,7 +38,9 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 	bot.startConversation(message, function (err, convo) {
 		controller.storage.users.get(message.user, function (err, user) {
 			if (!user) {
-				var res = getNameLastName(message)
+				while (res == undefined){
+					var res = getNameLastName(message)
+				}
 				console.log(res)
 				user = {
 					id : message.user,
@@ -79,6 +81,8 @@ function getNameLastName(message) {
 	var topost = 'https://graph.facebook.com/v2.6/' + message.user + '?access_token=' + accessToken;
 	request(topost, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
+			console.log(res.first_name)
+			console.log(res.last_name)
 			return res = JSON.parse(response.body)
 		} else {
 			return false;
