@@ -42,20 +42,19 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 				request(topost, function (error, response, body) {
 					if (!error && response.statusCode == 200) {
 						res = JSON.parse(response.body)
-							console.log(res.first_name)
-							console.log(res.last_name)
+							user = {
+							id : message.user,
+							first_name : res.first_name,
+							last_name : res.last_name,
+						};
 					}
 				})
-				/*user = {
-				id : message.user,
-				first_name : res.first_name,
-				last_name : res.last_name,
-				};*/
+
 			}
-			/*controller.storage.users.save(user, function (err, id) {
+			controller.storage.users.save(user, function (err, id) {
 				console.log(err)
-			});*/
-			convo.ask("Hello, how I can help you?!", function (response, convo) {
+			});
+			convo.ask("Hello "+user.first_name + " " + user.last_name + ", how I can help you?!", function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
 					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
 						digitalSearch++;
