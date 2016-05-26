@@ -94,9 +94,10 @@ function showSandra(bot, message) {
 						'title' : 'Managing Director, Sandra',
 						'image_url' : 'https://i.yapx.ru/BMeI.png',
 						'subtitle' : 'phone: (03) 8547 1078',
+						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
-								'url': 'mailto:godieseladmins@godieselracing.com',
+								'url': 'https://mailto:godieseladmins@godieselracing.com',
 								'title' : 'Email now'
 							}
 						]
