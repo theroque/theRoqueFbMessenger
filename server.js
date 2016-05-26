@@ -79,9 +79,9 @@ function getNameLastName(message) {
 	var topost = 'https://graph.facebook.com/v2.6/' + message.user + '?access_token=' + accessToken;
 	request(topost, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
+			res = JSON.parse(response.body)
 			console.log(res.first_name)
 			console.log(res.last_name)
-			res = JSON.parse(response.body)
 			return res
 		}
 	})
