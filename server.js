@@ -40,7 +40,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			userData = request(topost, function (error, response, body) {
 				if (!error && response.statusCode == 200) {
 					res = JSON.parse(response.body)
-					console.log(res)
+					//console.log(res)
 					//console.log(res.last_name)
 					return res;
 				}
