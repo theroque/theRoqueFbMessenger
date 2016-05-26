@@ -32,12 +32,14 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
-request('http://graph.facebook.com/v2.6/1043964249024835', function (error, response, body) {
+request('http://graph.facebook.com/me/v2.6/1043964249024835', function (error, response, body) {
   if (!error && response.statusCode == 200) {
     console.log(response) 
   } else{
 	  console.log(error)
   }
+  console.log(error)
+  console.log(response)
 })
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
