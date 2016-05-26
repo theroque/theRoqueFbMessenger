@@ -96,7 +96,7 @@ function showSandra(bot, message) {
 						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
-								'url' : 'https://www.google.ru',
+								'url' : 'https://mailto:buptyozzz@gmail.com',
 								'title' : 'Email now'
 							}
 						]
