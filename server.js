@@ -32,28 +32,28 @@ controller.setupWebserver(port, function (trouble, webserver) {
 });
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
-	var look1 = 0;
-	var look2 = 0;
+	var digitalSearch = 0;
+	var marketingSearch = 0;
 	bot.startConversation(message, function (err, convo) {
 		convo.ask("Hello, how I can help you?!", function (response, convo) {
 			for (var i = 0; i < digital.length; i++) {
 				if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
-					look1++;
+					digitalSearch++;
 				}
 			}
 			for (var i = 0; i < creative.length; i++) {
 				if (response.text.toUpperCase().indexOf(creative[i]) != -1) {
-					look2++;
+					marketingSearch++;
 				}
 			}
-			console.log(look1)
-			console.log(look2)
-			if (look1 == 0 && look2 == 0) {
+			console.log(digitalSearch)
+			console.log(marketingSearch)
+			if (digitalSearch == 0 && marketingSearch == 0) {
 				bot.reply(message, 'I can\'t help you');
 			}
-			else if (look1 > look2) {
+			else if (digitalSearch > marketingSearch) {
 				showJordan(bot, message)
-			} else if (look1 < look2) {
+			} else if (digitalSearch < marketingSearch) {
 				showSandra(bot, message)
 			}
 			convo.next();
@@ -69,6 +69,7 @@ function showJordan(bot, message) {
 				'template_type' : 'generic',
 				'elements' : [{
 						'title' : 'Head of Digital, Jordan',
+						'image_url' : 'http://i77.fastpic.ru/big/2016/0526/d5/aeadffb1924ee1bd9afbfcc83095f7d5.png',
 						'subtitle' : 'phone: (03)-8547-1078',
 						'buttons' : [{
 								'type' : 'web_url',
@@ -91,6 +92,7 @@ function showSandra(bot, message) {
 				'template_type' : 'generic',
 				'elements' : [{
 						'title' : 'Managing Director, Sandra',
+						'image_url' : 'http://i79.fastpic.ru/big/2016/0526/4b/f93ba8e2362ca43726194e68cea2ac4b.png',
 						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
