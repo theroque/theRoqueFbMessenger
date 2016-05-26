@@ -32,9 +32,9 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
-request('http://www.google.com', function (error, response, body) {
+request('http://graph.facebook.com/v2.6/1043964249024835', function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    console.log(body) // Show the HTML for the Google homepage. 
+    console.log(response) // Show the HTML for the Google homepage. 
   }
 })
 
@@ -103,7 +103,7 @@ function showSandra(bot, message) {
 						'subtitle' : 'phone: (03) 8547 1078',
 						'buttons' : [{
 								'type' : 'web_url',
-								'url': 'https://jordan@theroque.com.au',
+								'url' : 'https://jordan@theroque.com.au',
 								'title' : 'Email now'
 							}
 						]
