@@ -63,6 +63,8 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 				if (digitalSearch == 0 && marketingSearch == 0) {
 					bot.reply(message, 'I can\'t help you');
 				} else if (digitalSearch > marketingSearch) {
+					
+					bot.reply(message, message.channel)
 					showJordan(bot, message)
 				} else if (digitalSearch < marketingSearch) {
 					showSandra(bot, message)
