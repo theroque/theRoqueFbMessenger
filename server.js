@@ -92,7 +92,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 								pattern : bot.utterances.no,
 								callback : function (response, convo) {
 									convo.say('Hmmm, I\'m still new to all of this human interaction. I can help only with Digital and Marketing :(')
-									convo.stop();
+									convo.next();
 								}
 							}, {
 							default:
@@ -105,10 +105,8 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 							}
 						]);
 				} else if (digitalSearch > marketingSearch) {
-
 					showJordan(bot, message)
 				} else if (digitalSearch < marketingSearch) {
-
 					showSandra(bot, message)
 				}
 				convo.next();
