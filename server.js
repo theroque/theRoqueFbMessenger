@@ -41,7 +41,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 				var topost = 'https://graph.facebook.com/v2.6/' + message.user + '?access_token=' + accessToken
 					request(topost, function (error, response, body) {
 						if (!error && response.statusCode == 200) {
-							res = JSON.parse(response.body)
+							 var res = JSON.parse(response.body)
 						} else {
 							console.log(error)
 						}
@@ -79,50 +79,50 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			});
 		})
 	})
+});
+
+function showJordan(bot, message) {
+	bot.reply(message, {
+		attachment : {
+			'type' : 'template',
+			'payload' : {
+				'template_type' : 'generic',
+				'elements' : [{
+						'title' : 'Head of Digital, Jordan',
+						'image_url' : 'https://i.yapx.ru/BMeH.png',
+						'subtitle' : 'phone: (03)-8547-1078',
+						'buttons' : [{
+								'type' : 'web_url',
+								'url' : 'http://theroque.com.au/roque-digital/contact/',
+								'title' : "Email now"
+							}
+						]
+					}
+				]
+			}
+		}
 	});
+}
 
-	function showJordan(bot, message) {
-		bot.reply(message, {
-			attachment : {
-				'type' : 'template',
-				'payload' : {
-					'template_type' : 'generic',
-					'elements' : [{
-							'title' : 'Head of Digital, Jordan',
-							'image_url' : 'https://i.yapx.ru/BMeH.png',
-							'subtitle' : 'phone: (03)-8547-1078',
-							'buttons' : [{
-									'type' : 'web_url',
-									'url' : 'http://theroque.com.au/roque-digital/contact/',
-									'title' : "Email now"
-								}
-							]
-						}
-					]
-				}
+function showSandra(bot, message) {
+	bot.reply(message, {
+		attachment : {
+			'type' : 'template',
+			'payload' : {
+				'template_type' : 'generic',
+				'elements' : [{
+						'title' : 'Managing Director, Sandra',
+						'image_url' : 'https://i.yapx.ru/BMeI.png',
+						'subtitle' : 'phone: (03) 8547 1078',
+						'buttons' : [{
+								'type' : 'web_url',
+								'url' : 'https://jordan@theroque.com.au',
+								'title' : 'Email now'
+							}
+						]
+					}
+				]
 			}
-		});
-	}
-
-	function showSandra(bot, message) {
-		bot.reply(message, {
-			attachment : {
-				'type' : 'template',
-				'payload' : {
-					'template_type' : 'generic',
-					'elements' : [{
-							'title' : 'Managing Director, Sandra',
-							'image_url' : 'https://i.yapx.ru/BMeI.png',
-							'subtitle' : 'phone: (03) 8547 1078',
-							'buttons' : [{
-									'type' : 'web_url',
-									'url' : 'https://jordan@theroque.com.au',
-									'title' : 'Email now'
-								}
-							]
-						}
-					]
-				}
-			}
-		});
-	}
+		}
+	});
+}
