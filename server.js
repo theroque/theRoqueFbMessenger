@@ -32,7 +32,7 @@ controller.setupWebserver(port, function (trouble, webserver) {
 	});
 });
 
-request('https://graph.facebook.com/v2.6/1043964249024835?access_token=EAAPxG1KbJV8BAFn4WEvVQr0aNPir0ZAXlz5BoxGUwB5ktcmA2JVK0BH0tt4L4snirYZArzmssTUmvv8vgkpdWBWOta7JdrfuV0APN6GV5KokXXSSkg1PlkTD6B6hexV7ArxOKxidkYtepY1jVrCrvOEdjEWYLY9y4EMk7qRwZDZD', function (error, response, body) {
+request('https://graph.facebook.com/v2.6/1043964249024835?access_token='+accessToken, function (error, response, body) {
   if (!error && response.statusCode == 200) {
 	  res = JSON.parse(response.body)
 	  console.log(res.first_name)
