@@ -61,11 +61,54 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 				console.log(digitalSearch)
 				console.log(marketingSearch)
 				if (digitalSearch == 0 && marketingSearch == 0) {
-					bot.reply(message, 'I can\'t help you');
+					convo.ask('Hmmm, you\'ve lost me. Are you looking for Digital assistance, or something else?', [{
+								pattern : bot.utterances.yes,
+								callback : function (response, convo) {
+									convo.ask('Digital assistance or Marketing one?', [{
+												pattern : ['digital'],
+												callback : function (response, convo) {
+													showJordan(bot, message)
+													convo.next();
+												}
+											}, {
+												pattern : ['marketing'],
+												callback : function (response, convo) {
+													showSandra(bot, message)
+													convo.next();
+												}
+											}, {
+											default:
+												true,
+												callback : function (response, convo) {
+													// just repeat the question
+													convo.repeat();
+													convo.next();
+												}
+											}
+										]);
+									convo.next();
+								}
+							}, {
+								pattern : bot.utterances.no,
+								callback : function (response, convo) {
+									convo.say('Hmmm, I\'m still new to all of this human interaction. I can help only with Digital and Marketing :(')
+									convo.stop();
+								}
+							}, {
+							default:
+								true,
+								callback : function (response, convo) {
+									// just repeat the question
+									convo.repeat();
+									convo.next();
+								}
+							}
+						]);
 				} else if (digitalSearch > marketingSearch) {
-					bot.reply(message, 'Oh great! I suggest you speak to our Head of Digital, Jordan.')
+
 					showJordan(bot, message)
 				} else if (digitalSearch < marketingSearch) {
+
 					showSandra(bot, message)
 				}
 				convo.next();
@@ -75,6 +118,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 });
 
 function showJordan(bot, message) {
+	bot.reply(message, 'Oh great! I suggest you speak to our Head of Digital, Jordan.')
 	bot.reply(message, {
 		attachment : {
 			'type' : 'template',
@@ -108,6 +152,7 @@ function showJordan(bot, message) {
 }
 
 function showSandra(bot, message) {
+	bot.reply(message, 'I think our Managing Director, Sandra will help you!')
 	bot.reply(message, {
 		attachment : {
 			'type' : 'template',
@@ -123,7 +168,7 @@ function showSandra(bot, message) {
 								'title' : 'contact via site'
 							}
 						]
-					},{
+					}, {
 						'title' : 'Managing Director, Sandra',
 						'image_url' : 'https://i.yapx.ru/BMeI.png',
 						'subtitle' : 'mail: sandra@theroque.com.au',
