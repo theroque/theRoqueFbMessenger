@@ -33,8 +33,8 @@ controller.setupWebserver(port, function (trouble, webserver) {
 });
 
 answers = {
-	digital : new RegExp(/^(digital|digital assistance|digital one)/i),
-	marketing : new RegExp(/^(marketing|marketing assistance|marketing one)/i),
+	digital : new RegExp(/^(digital|digital assistance|digital one|digital query)/i),
+	marketing : new RegExp(/^(marketing|marketing assistance|marketing one|marketing query)/i),
 };
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
@@ -46,8 +46,8 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			if (!error && response.statusCode == 200) {
 				res = JSON.parse(response.body)
 			}
-			if (res.first_name && res.last_name) {
-				hellomessage = "Hello, " + res.first_name + " " + res.last_name + ", how I can help you?!"
+			if (res.first_name) {
+				hellomessage = "Hello, " + res.first_name + ", how I can help you?"
 			} else {
 				hellomessage = "Hello, how I can help you?!"
 			}
@@ -69,7 +69,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 					convo.ask('Hmmm, you\'ve lost me. Are you looking for Digital assistance, or something else?', [{
 								pattern : bot.utterances.yes,
 								callback : function (response, convo) {
-									convo.ask('Digital assistance or Marketing one?', [{
+									convo.ask('Is it a digital query or marketing assistance that you are looking for?', [{
 												pattern : answers.digital,
 												callback : function (response, convo) {
 													showJordan(bot, message)
@@ -84,7 +84,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 											}, {
 												pattern : bot.utterances.no,
 												callback : function (response, convo) {
-													bot.reply(message, 'Your are strange >< \nBye!')
+													bot.reply(message, 'Your are strange >< \nBye.')
 													convo.next();
 												}
 											}, {
@@ -102,7 +102,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 							}, {
 								pattern : bot.utterances.no,
 								callback : function (response, convo) {
-									convo.say('Hmmm, I\'m still new to all of this human interaction. I can help only with Digital and Marketing. Bye!:(')
+									convo.say('Hmm, I\'m still new to all of this human interaction, and I\'m still learning. So far I can only help with digital and marketing enquiries. Sorry!')
 									convo.next();
 								}
 							}, {
@@ -136,17 +136,7 @@ function showJordan(bot, message) {
 				'elements' : [{
 						'title' : 'Head of Digital, Jordan',
 						'image_url' : 'https://i.yapx.ru/BMeH.png',
-						'subtitle' : 'phone: (03)-8547-1078',
-						'buttons' : [{
-								'type' : 'web_url',
-								'url' : 'http://theroque.com.au/roque-digital/contact/',
-								'title' : "contact via site"
-							}
-						]
-					}, {
-						'title' : 'Head of Digital, Jordan',
-						'image_url' : 'https://i.yapx.ru/BMeH.png',
-						'subtitle' : 'mail: jordan@theroque.com.au',
+						'subtitle' : 'phone: (03)-8547-1078 \n mail: jordan@theroque.com.au',
 						'buttons' : [{
 								'type' : 'web_url',
 								'url' : 'http://theroque.com.au/roque-digital/contact/',
@@ -161,7 +151,7 @@ function showJordan(bot, message) {
 }
 
 function showSandra(bot, message) {
-	bot.reply(message, 'I think our Managing Director, Sandra will help you!')
+	bot.reply(message, 'Oh yes, I suggest you have a chat to our Managing Director, Sandra.')
 	bot.reply(message, {
 		attachment : {
 			'type' : 'template',
@@ -170,17 +160,7 @@ function showSandra(bot, message) {
 				'elements' : [{
 						'title' : 'Managing Director, Sandra',
 						'image_url' : 'https://i.yapx.ru/BMeI.png',
-						'subtitle' : 'phone: (03) 8547 1078',
-						'buttons' : [{
-								'type' : 'web_url',
-								'url' : 'http://theroque.com.au/roque/contact/',
-								'title' : 'contact via site'
-							}
-						]
-					}, {
-						'title' : 'Managing Director, Sandra',
-						'image_url' : 'https://i.yapx.ru/BMeI.png',
-						'subtitle' : 'mail: sandra@theroque.com.au',
+						'subtitle' : 'phone: (03) 8547 1078 \n mail: sandra@theroque.com.au',
 						'buttons' : [{
 								'type' : 'web_url',
 								'url' : 'http://theroque.com.au/roque/contact/',
