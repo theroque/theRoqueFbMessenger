@@ -1,9 +1,7 @@
 var Botkit = require('botkit');
-var request = require('request')
-	var digital = ["SEO", "BOT", "FACEBOOK", "SOCIAL MEDIA", "SOCIAL", "DIGITAL MARKETING", "EMAIL MARKETING", "CONTENT MANAGMENTt", "ANALYTICS", "APP"]
-	var creative = ["BRAND", "BRAND STRATEGY", "DESIGN", "CREATIVE", "MARKETING", "ADVERTISING", "WEB DESIGN", "COMMUNICATIONS", "PR", "VIDEO", "ANIMATION", "PRODUCTION"]
-
-	var language = 'eng'; //DEFAULT LANGUAGE
+var request = require('request');
+var digital = ["SEO", "BOT", "FACEBOOK", "SOCIAL MEDIA", "SOCIAL", "DIGITAL MARKETING", "EMAIL MARKETING", "CONTENT MANAGMENTt", "ANALYTICS", "APP"]
+var creative = ["BRAND", "BRAND STRATEGY", "DESIGN", "CREATIVE", "MARKETING", "ADVERTISING", "WEB DESIGN", "COMMUNICATIONS", "PR", "VIDEO", "ANIMATION", "PRODUCTION"]
 
 var accessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN; //YOU SECRET PHRASE
 var verifyToken = process.env.FACEBOOK_VERIFY_TOKEN; //ACCESS KEY FROM FACEBOOK
@@ -52,15 +50,15 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 						id : message.user,
 					};
 					if (res.first_name) {
-						hellomessage = "Hello, " + res.first_name + ", how I can help you?"
+						hellomessage = "Hello, " + res.first_name + ", how can I help you?"
 					} else {
-						hellomessage = "Hello, how I can help you?!"
+						hellomessage = "Hello, how can I help you?!"
 					}
 					controller.storage.users.save(user, function (err, id) {
 						console.log(err)
 					});
 				} else {
-					hellomessage = "You have returned, " + res.first_name + ". How I can help you?"
+					hellomessage = "Hi again, " + res.first_name + ". How can I help you?"
 				}
 
 				convo.ask(hellomessage, function (response, convo) {
@@ -95,7 +93,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 												}, {
 													pattern : bot.utterances.no,
 													callback : function (response, convo) {
-														bot.reply(message, 'Your are strange >< \nBye.')
+														bot.reply(message, 'You are strange >< \nBye.')
 														convo.next();
 													}
 												}, {
@@ -103,6 +101,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 													true,
 													callback : function (response, convo) {
 														// just repeat the question
+														convo.say('You should choose between digital and marketing or type NO')
 														convo.repeat();
 														convo.next();
 													}
@@ -113,7 +112,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 								}, {
 									pattern : bot.utterances.no,
 									callback : function (response, convo) {
-										convo.say('Hmm, I\'m still new to all of this human interaction, and I\'m still learning. So far I can only help with digital and marketing enquiries. Sorry!')
+										convo.say('Hmm, I\'m still new to all of this human interaction, and I\'m still learning. \nSo far I can only help with digital and marketing enquiries. \nSorry, bye. :/ ')
 										convo.next();
 									}
 								}, {
@@ -121,6 +120,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 									true,
 									callback : function (response, convo) {
 										// just repeat the question
+										convo.say('answer YES or NO, please')
 										convo.repeat();
 										convo.next();
 									}
@@ -130,6 +130,9 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 						showJordan(bot, message)
 					} else if (digitalSearch < marketingSearch) {
 						showSandra(bot, message)
+					} else if (digitalSearch == marketingSearch) {
+						convo.say('Let\'s try again. Please discribe what you want in details')
+						convo.repeat();
 					}
 					convo.next();
 				});
@@ -138,8 +141,13 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 	})
 });
 
+controller.on('message_received', function (bot, message) {
+	bot.reply(message, 'Hello, I\'m theRogue Bot. Type any greeting message to me and we will start.');
+});
+
+
 function showJordan(bot, message) {
-	bot.reply(message, 'Oh great! I suggest you speak to our Head of Digital, Jordan.')
+	bot.reply(message, 'I suggest you to speak to our Head of Digital, Jordan.')
 	bot.reply(message, {
 		attachment : {
 			'type' : 'template',
@@ -163,7 +171,7 @@ function showJordan(bot, message) {
 }
 
 function showSandra(bot, message) {
-	bot.reply(message, 'Oh yes, I suggest you have a chat to our Managing Director, Sandra.')
+	bot.reply(message, 'I suggest you have a chat to our Managing Director, Sandra.')
 	bot.reply(message, {
 		attachment : {
 			'type' : 'template',
