@@ -1,21 +1,21 @@
 {
-  "name": "onlinewaiter",
+  "name": "theRogue",
   "version": "1.0.0",
-  "description": "Bot for restaurant!",
+  "description": "Bot theRogue!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HippyFizz/onlinewaiter.git"
+    "url": "git+https://github.com/HippyFizz/theRoque"
   },
   "author": "HippyFizz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HippyFizz/onlinewaiter/issues"
+    "url": "https://github.com/HippyFizz/theRoque/issues"
   },
-  "homepage": "https://github.com/HippyFizz/onlinewaiter#readme",
+  "homepage": "https://github.com/HippyFizz/theRoque#readme",
   "dependencies": {
     "botkit": "^0.1.1",
 	"mysql": "^2.10.2",

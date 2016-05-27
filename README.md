@@ -1,3 +1,3 @@
-# restaurantBot
+# theRogue BOT
 
-Bot for restaurant!
+Specialising in creative brand development and strategic business planning, theROQUE is a progressive, full service boutique communications agency.
