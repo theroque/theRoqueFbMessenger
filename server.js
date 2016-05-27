@@ -62,77 +62,77 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 				} else {
 					hellomessage = "You have returned, " + res.first_name + ". How I can help you?"
 				}
-			});
 
-			convo.ask(hellomessage, function (response, convo) {
-				for (var i = 0; i < digital.length; i++) {
-					if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
-						digitalSearch++;
+				convo.ask(hellomessage, function (response, convo) {
+					for (var i = 0; i < digital.length; i++) {
+						if (response.text.toUpperCase().indexOf(digital[i]) != -1) {
+							digitalSearch++;
+						}
 					}
-				}
-				for (var i = 0; i < creative.length; i++) {
-					if (response.text.toUpperCase().indexOf(creative[i]) != -1) {
-						marketingSearch++;
+					for (var i = 0; i < creative.length; i++) {
+						if (response.text.toUpperCase().indexOf(creative[i]) != -1) {
+							marketingSearch++;
+						}
 					}
-				}
-				console.log(digitalSearch)
-				console.log(marketingSearch)
-				if (digitalSearch == 0 && marketingSearch == 0) {
-					convo.ask('Hmmm, you\'ve lost me. Are you looking for Digital assistance, or something else?', [{
-								pattern : bot.utterances.yes,
-								callback : function (response, convo) {
-									convo.ask('Is it a digital query or marketing assistance that you are looking for?', [{
-												pattern : answers.digital,
-												callback : function (response, convo) {
-													showJordan(bot, message)
-													convo.next();
+					console.log(digitalSearch)
+					console.log(marketingSearch)
+					if (digitalSearch == 0 && marketingSearch == 0) {
+						convo.ask('Hmmm, you\'ve lost me. Are you looking for Digital assistance, or something else?', [{
+									pattern : bot.utterances.yes,
+									callback : function (response, convo) {
+										convo.ask('Is it a digital query or marketing assistance that you are looking for?', [{
+													pattern : answers.digital,
+													callback : function (response, convo) {
+														showJordan(bot, message)
+														convo.next();
+													}
+												}, {
+													pattern : answers.marketing,
+													callback : function (response, convo) {
+														showSandra(bot, message)
+														convo.next();
+													}
+												}, {
+													pattern : bot.utterances.no,
+													callback : function (response, convo) {
+														bot.reply(message, 'Your are strange >< \nBye.')
+														convo.next();
+													}
+												}, {
+												default:
+													true,
+													callback : function (response, convo) {
+														// just repeat the question
+														convo.repeat();
+														convo.next();
+													}
 												}
-											}, {
-												pattern : answers.marketing,
-												callback : function (response, convo) {
-													showSandra(bot, message)
-													convo.next();
-												}
-											}, {
-												pattern : bot.utterances.no,
-												callback : function (response, convo) {
-													bot.reply(message, 'Your are strange >< \nBye.')
-													convo.next();
-												}
-											}, {
-											default:
-												true,
-												callback : function (response, convo) {
-													// just repeat the question
-													convo.repeat();
-													convo.next();
-												}
-											}
-										]);
-									convo.next();
+											]);
+										convo.next();
+									}
+								}, {
+									pattern : bot.utterances.no,
+									callback : function (response, convo) {
+										convo.say('Hmm, I\'m still new to all of this human interaction, and I\'m still learning. So far I can only help with digital and marketing enquiries. Sorry!')
+										convo.next();
+									}
+								}, {
+								default:
+									true,
+									callback : function (response, convo) {
+										// just repeat the question
+										convo.repeat();
+										convo.next();
+									}
 								}
-							}, {
-								pattern : bot.utterances.no,
-								callback : function (response, convo) {
-									convo.say('Hmm, I\'m still new to all of this human interaction, and I\'m still learning. So far I can only help with digital and marketing enquiries. Sorry!')
-									convo.next();
-								}
-							}, {
-							default:
-								true,
-								callback : function (response, convo) {
-									// just repeat the question
-									convo.repeat();
-									convo.next();
-								}
-							}
-						]);
-				} else if (digitalSearch > marketingSearch) {
-					showJordan(bot, message)
-				} else if (digitalSearch < marketingSearch) {
-					showSandra(bot, message)
-				}
-				convo.next();
+							]);
+					} else if (digitalSearch > marketingSearch) {
+						showJordan(bot, message)
+					} else if (digitalSearch < marketingSearch) {
+						showSandra(bot, message)
+					}
+					convo.next();
+				});
 			});
 		})
 	})
