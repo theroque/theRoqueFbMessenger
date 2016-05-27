@@ -46,11 +46,23 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 			if (!error && response.statusCode == 200) {
 				res = JSON.parse(response.body)
 			}
-			if (res.first_name) {
-				hellomessage = "Hello, " + res.first_name + ", how I can help you?"
-			} else {
-				hellomessage = "Hello, how I can help you?!"
-			}
+			controller.storage.users.get(message.user, function (err, user) {
+				if (!user) {
+					user = {
+						id : message.user,
+					};
+					if (res.first_name) {
+						hellomessage = "Hello, " + res.first_name + ", how I can help you?"
+					} else {
+						hellomessage = "Hello, how I can help you?!"
+					}
+					controller.storage.users.save(user, function (err, id) {
+						console.log(err)
+					});
+				} else {
+					hellomessage = "You have returned, " + res.first_name + ". How I can help you?"
+				}
+			});
 
 			convo.ask(hellomessage, function (response, convo) {
 				for (var i = 0; i < digital.length; i++) {
