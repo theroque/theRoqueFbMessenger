@@ -172,7 +172,6 @@ controller.on('message_received', function (bot, message) {
 	bot.reply(message, 'Hello, I\'m theRogue Bot. Type any greeting message to me and we will start.');
 });
 
-
 controller.on('facebook_postback', function (bot, message) {
     if (message.payload.indexOf("digital")) {
         showJordan(bot, message);
