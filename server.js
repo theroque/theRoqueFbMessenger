@@ -31,8 +31,8 @@ controller.setupWebserver(port, function (trouble, webserver) {
 });
 
 answers = {
-	digital : new RegExp(/^(digital|digital assistance|digital one|digital query)/i),
-    marketing: new RegExp(/^(marketing|marketing assistance|marketing one|marketing query)/i)
+	digital : new RegExp(/^(digital|digital assistance|digital one|digital query|digital strategy)/i),
+    marketing: new RegExp(/^(marketing|marketing assistance|marketing one|marketing query|creative)/i)
 };
 
 controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
@@ -96,7 +96,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
                                                     'template_type': 'generic',
                                                     'elements': [
                                                         {
-                                                            'title': 'Sorry, I\'m new to this whole human-interaction thing. Why don\'t you just tell me what you want?',
+                                                            'subtitle': 'Sorry, I\'m new to this whole human-interaction thing. Why don\'t you just tell me what you want?',
                                                             'image_url': 'http://i.imgur.com/nwmzjkC.png',
                                                             'buttons': [
                                                                 {
@@ -140,6 +140,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 
 controller.on('message_received', function (bot, message) {
 	bot.reply(message, 'Hello, I\'m theRogue Bot. Type any greeting message to me and we will start.');
+    return false;
 });
 
 controller.on('facebook_postback', function (bot, message) {
