@@ -74,41 +74,20 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 					}
 					if (digitalSearch == 0 && marketingSearch == 0) {
                         convo.ask('Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?', [{
-									pattern : bot.utterances.yes,
+									pattern : answers.digital,
 									callback : function (response, convo) {
-										convo.ask('Is it a digital query or marketing assistance that you are looking for?', [{
-													pattern : answers.digital,
-													callback : function (response, convo) {
-                                                        showJordan(bot, message);
-														convo.next();
-													}
-												}, {
-													pattern : answers.marketing,
-													callback : function (response, convo) {
-                                                        showSandra(bot, message);
-														convo.next();
-													}
-												}, {
-													pattern : bot.utterances.no,
-													callback : function (response, convo) {
-                                                        bot.reply(message, 'You are strange >< \nBye.');
-														convo.next();
-													}
-												}, {
-												default:
-													true,
-													callback : function (response, convo) {
-														// just repeat the question
-                                                        convo.say('You should choose between digital and marketing or type NO');
-														convo.repeat();
-														convo.next();
-													}
-												}
-											]);
+                                        showJordan(bot, message);
 										convo.next();
 									}
 								}, {
-									pattern : bot.utterances.no,
+									pattern : answers.marketing,
+									callback : function (response, convo) {
+                                        showSandra(bot, message);
+										convo.next();
+									}
+								}, {
+								default:
+									true,
 									callback : function (response, convo) {
                                         bot.reply(message, {
                                             attachment: {
@@ -140,15 +119,6 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
                                                 }
                                             }
                                         });
-										convo.next();
-									}
-								}, {
-								default:
-									true,
-									callback : function (response, convo) {
-										// just repeat the question
-                                        convo.say('answer YES or NO, please');
-										convo.repeat();
 										convo.next();
 									}
 								}
