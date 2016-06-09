@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/HippyFizz/theRoque#readme",
   "dependencies": {
-    "botkit": "^0.1.1",
-	"mysql": "^2.10.2",
+    "botkit": ^0.2.0",
 	"request": "^2.61.0"
   }
 }
