@@ -143,11 +143,11 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                                                         }]
                                                 }
                                             }
-                                        });*/
+                                        });
 										convo.stop();
 									}
 								}
-							]);
+							]);*/
 					} else if (digitalSearch > marketingSearch) {
 						showJordan(bot, message)
 					} else if (digitalSearch < marketingSearch) {
