@@ -148,10 +148,10 @@ controller.on('message_received', function (bot, message) {
 });
 
 controller.on('facebook_postback', function (bot, message) {
-    if (message.payload.indexOf("digital")) {
+    if (message.payload.indexOf("digital") != -1) {
         showJordan(bot, message);
     }
-    if (message.payload.indexOf("creative")) {
+    if (message.payload.indexOf("creative") != -1) {
         showSandra(bot, message);
     }
 });
