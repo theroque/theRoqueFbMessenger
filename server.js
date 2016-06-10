@@ -73,7 +73,31 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
 						}
 					}
 					if (digitalSearch == 0 && marketingSearch == 0) {
-                        convo.ask('Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?', [{
+                        convo.ask('Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?', [
+                            {
+                                pattern: 'yes',
+                                callback: function(response, convo) {
+                                    // since no further messages are queued after this,
+                                    // the conversation will end naturally with status == 'completed'
+                                    convo.next();
+                                }
+                            },
+                            {
+                                pattern: 'no',
+                                callback: function(response, convo) {
+                                    // stop the conversation. this will cause it to end with status == 'stopped'
+                                    convo.stop();
+                                }
+                            },
+                            {
+                                default: true,
+                                callback: function(response, convo) {
+                                    convo.repeat();
+                                    convo.next();
+                                }
+                            }
+                        ]);
+                        /*convo.ask('Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?', [{
 									pattern : answers.digital,
 									callback : function (response, convo) {
                                         showJordan(bot, message);
@@ -90,7 +114,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
 									true,
 									callback : function (response, convo) {
                                         convo.say('test');
-                                        /*bot.reply(message, {
+                                        bot.reply(message, {
                                             attachment: {
                                                 'type': 'template',
                                                 'payload': {
