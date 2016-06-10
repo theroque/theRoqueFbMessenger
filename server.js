@@ -89,7 +89,8 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
 								default:
 									true,
 									callback : function (response, convo) {
-                                        bot.reply(message, {
+                                        convo.say('test');
+                                        /*bot.reply(message, {
                                             attachment: {
                                                 'type': 'template',
                                                 'payload': {
@@ -118,7 +119,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                                                         }]
                                                 }
                                             }
-                                        });
+                                        });*/
 										convo.stop();
 									}
 								}
