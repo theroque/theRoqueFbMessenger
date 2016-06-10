@@ -121,6 +121,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                                             }
                                         }
                                     });
+                                    convo.repeat();
                                     convo.next();
                                 }
                             }
