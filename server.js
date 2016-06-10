@@ -35,7 +35,7 @@ answers = {
     marketing: new RegExp(/^(marketing|marketing assistance|marketing one|marketing query|creative)/i)
 };
 
-controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi'], 'message_received', function (bot, message) {
+controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message_received', function (bot, message) {
 	var digitalSearch = 0;
 	var marketingSearch = 0;
 	bot.startConversation(message, function (err, convo) {
@@ -139,8 +139,10 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'G\’day', 'hi
 });
 
 controller.on('message_received', function (bot, message) {
-	bot.reply(message, 'Hello, I\'m theRogue Bot. Type any greeting message to me and we will start.');
-    return false;
+	if (message.text.indexOf("digital") == -1 && message.text.indexOf("creative") == -1 && message.text.indexOf("h1") && message.text.indexOf("hello") && message.text.indexOf("greetings") && message.text.indexOf("good day") && message.text.indexOf("hey") && message.text.indexOf("hi")) {
+		bot.reply(message, 'Hello, I\'m theRoque Bot. Type any greeting message to me and we will start.');
+		return false;
+	}
 });
 
 controller.on('facebook_postback', function (bot, message) {
