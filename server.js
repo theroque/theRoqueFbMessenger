@@ -75,24 +75,52 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
 					if (digitalSearch == 0 && marketingSearch == 0) {
                         convo.ask('Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?', [
                             {
-                                pattern: 'yes',
+                                pattern: answers.digital,
                                 callback: function(response, convo) {
-                                    // since no further messages are queued after this,
-                                    // the conversation will end naturally with status == 'completed'
+                                    showJordan(bot, message);
                                     convo.next();
                                 }
                             },
                             {
-                                pattern: 'no',
+                                pattern: answers.marketing,
                                 callback: function(response, convo) {
-                                    // stop the conversation. this will cause it to end with status == 'stopped'
+                                    showSandra(bot, message);
                                     convo.stop();
                                 }
                             },
                             {
                                 default: true,
                                 callback: function(response, convo) {
-                                    convo.repeat();
+                                    bot.reply(message, {
+                                        attachment: {
+                                            'type': 'template',
+                                            'payload': {
+                                                'template_type': 'generic',
+                                                'elements': [
+                                                    {
+                                                        'subtitle': 'Why don\'t you just tell me what you want?"',
+                                                        'image_url': 'http://i.imgur.com/nwmzjkC.png',
+                                                        'buttons': [
+                                                            {
+                                                                'type': 'postback',
+                                                                'title': 'Digital',
+                                                                'payload': 'digital'
+                                                            },
+                                                            {
+                                                                'type': 'postback',
+                                                                'title': 'Creative',
+                                                                'payload': 'creative'
+                                                            },
+                                                            {
+                                                                'type': 'postback',
+                                                                'title': 'Something else',
+                                                                'payload': 'creative'
+                                                            }
+                                                        ]
+                                                    }]
+                                            }
+                                        }
+                                    });
                                     convo.next();
                                 }
                             }
@@ -153,7 +181,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
 					} else if (digitalSearch < marketingSearch) {
 						showSandra(bot, message)
 					} else if (digitalSearch == marketingSearch) {
-                        convo.say('Let\'s try again. Please discribe what you want in details');
+                        convo.say('Let\'s try again. Please describe what you want in details');
 						convo.repeat();
 					}
 					convo.next();
