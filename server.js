@@ -85,7 +85,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                                 pattern: answers.marketing,
                                 callback: function(response, convo) {
                                     showSandra(bot, message);
-                                    convo.stop();
+                                    convo.next();
                                 }
                             },
                             {
@@ -125,57 +125,6 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                                 }
                             }
                         ]);
-                        /*convo.ask('Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?', [{
-									pattern : answers.digital,
-									callback : function (response, convo) {
-                                        showJordan(bot, message);
-										convo.next();
-									}
-								}, {
-									pattern : answers.marketing,
-									callback : function (response, convo) {
-                                        showSandra(bot, message);
-										convo.next();
-									}
-								}, {
-								default:
-									true,
-									callback : function (response, convo) {
-                                        convo.say('test');
-                                        bot.reply(message, {
-                                            attachment: {
-                                                'type': 'template',
-                                                'payload': {
-                                                    'template_type': 'generic',
-                                                    'elements': [
-                                                        {
-                                                            'subtitle': 'Why don\'t you just tell me what you want?"',
-                                                            'image_url': 'http://i.imgur.com/nwmzjkC.png',
-                                                            'buttons': [
-                                                                {
-                                                                    'type': 'postback',
-                                                                    'title': 'Digital',
-                                                                    'payload': 'digital'
-                                                                },
-                                                                {
-                                                                    'type': 'postback',
-                                                                    'title': 'Creative',
-                                                                    'payload': 'creative'
-                                                                },
-                                                                {
-                                                                    'type': 'postback',
-                                                                    'title': 'Something else',
-                                                                    'payload': 'creative'
-                                                                }
-                                                            ]
-                                                        }]
-                                                }
-                                            }
-                                        });
-										convo.stop();
-									}
-								}
-							]);*/
 					} else if (digitalSearch > marketingSearch) {
 						showJordan(bot, message)
 					} else if (digitalSearch < marketingSearch) {
