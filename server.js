@@ -98,7 +98,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                                                 'template_type': 'generic',
                                                 'elements': [
                                                     {
-                                                        'subtitle': 'Why don\'t you just tell me what you want?"',
+                                                        'title': 'Why don\'t you just tell me what you want?"',
                                                         'image_url': 'http://i.imgur.com/nwmzjkC.png',
                                                         'buttons': [
                                                             {
