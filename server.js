@@ -3,6 +3,15 @@ var request = require('request');
 var digital = ["DIGITAL", "STRATEGY", "BOT", "MESSENGER", "USER EXPERIENCE", "WEB DESIGN", "ANALYTICS", "SEO", "SEM", "APP", "SOCIAL MEDIA", "CONTENT"];
 var creative = ["CREATIVE", "BRANDING", "COMMUNICATIONS", "PR", "GRAPHICS"];
 
+var dialogue1 = ['Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?'];
+var dialogue2 = ['Why don\'t you just tell me what you want?'];
+var dialogue3 = ['Hello, I\'m theRoque Bot. Type any greeting message to me and we will start.'];
+var dialogue4 = ['I suggest you to speak to our Head of Digital, Jordan.'];
+var dialogue5 = ['I suggest you have a chat to our Managing Director, Sandra.'];
+
+
+
+
 var accessToken = process.env.FACEBOOK_PAGE_ACCESS_TOKEN; //YOU SECRET PHRASE
 var verifyToken = process.env.FACEBOOK_VERIFY_TOKEN; //ACCESS KEY FROM FACEBOOK
 var port = process.env.PORT;
@@ -50,15 +59,15 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                         id: message.user
 					};
 					if (res.first_name) {
-						hellomessage = "Hello, " + res.first_name + ", how can I help you?"
+						hellomessage = "Hello, " + res.first_name + ", how can I help you?" //it is a hello message for new user if bot can get his first name
 					} else {
-						hellomessage = "Hello, how can I help you?!"
+						hellomessage = "Hello, how can I help you?!" //it is a hello message for new user if bot can't get his first name
 					}
 					controller.storage.users.save(user, function (err, id) {
 						console.log(err)
 					});
 				} else {
-					hellomessage = "Hi again, " + res.first_name + ". How can I help you?"
+					hellomessage = "Hi again, " + res.first_name + ". How can I help you?" //it is a hello message for common user, not new one
 				}
 
 				convo.ask(hellomessage, function (response, convo) {
@@ -73,7 +82,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
 						}
 					}
 					if (digitalSearch == 0 && marketingSearch == 0) {
-                        convo.ask('Hmm, I\'ve lost you. Do you need help with your digital strategy, or are you looking for some creative help?', [
+                        convo.ask(dialogue1[getRandomInt(0, dialogue1.length - 1)], [
                             {
                                 pattern: answers.digital,
                                 callback: function(response, convo) {
@@ -98,7 +107,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
                                                 'template_type': 'generic',
                                                 'elements': [
                                                     {
-                                                        'title': 'Why don\'t you just tell me what you want?"',
+                                                        'title': dialogue2[getRandomInt(0, dialogue2.length - 1)],
                                                         'image_url': 'http://i.imgur.com/nwmzjkC.png',
                                                         'buttons': [
                                                             {
@@ -142,7 +151,7 @@ controller.hears(['h1', 'hello', 'greetings', 'good day', 'hey', 'hi'], 'message
 
 controller.on('message_received', function (bot, message) {
 	if (message.text.indexOf("digital") == -1 && message.text.indexOf("creative") == -1 && message.text.indexOf("h1") && message.text.indexOf("hello") && message.text.indexOf("greetings") && message.text.indexOf("good day") && message.text.indexOf("hey") && message.text.indexOf("hi")) {
-		bot.reply(message, 'Hello, I\'m theRoque Bot. Type any greeting message to me and we will start.');
+		bot.reply(message, dialogue3[getRandomInt(0, dialogue3.length - 1)]);
 		return false;
 	}
 });
@@ -157,7 +166,7 @@ controller.on('facebook_postback', function (bot, message) {
 });
 
 function showJordan(bot, message) {
-    bot.reply(message, 'I suggest you to speak to our Head of Digital, Jordan.');
+    bot.reply(message, dialogue4[getRandomInt(0, dialogue4.length - 1)]);
 	bot.reply(message, {
 		attachment : {
 			'type' : 'template',
@@ -181,7 +190,7 @@ function showJordan(bot, message) {
 }
 
 function showSandra(bot, message) {
-    bot.reply(message, 'I suggest you have a chat to our Managing Director, Sandra.');
+    bot.reply(message, dialogue5[getRandomInt(0, dialogue5.length - 1)]);
 	bot.reply(message, {
 		attachment : {
 			'type' : 'template',
@@ -202,4 +211,8 @@ function showSandra(bot, message) {
 			}
 		}
 	});
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
